@@ -2,7 +2,9 @@ module DataTable
 
   def self.included base
     base.send :extend, ClassMethods
-    base.send :extend, Mongoid::ClassMethods
+    if defined?(Mongoid::Document)
+      base.send :extend, Mongoid::ClassMethods
+    end
   end
 
   module ClassMethods
